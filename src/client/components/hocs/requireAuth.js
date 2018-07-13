@@ -6,11 +6,21 @@ import {Redirect} from 'react-router-dom';
 export default ChildComponent => {
 
     class RequireAuth extends Component {
+        componentWillMount() {
+          if(!this.props.auth) {
+            this.props.history.push('/');
+          }
+        }
+         
+
         render() {
-          console.log('in RequireAuth');
+          
           switch (this.props.auth) {
             case false:
-              return <Redirect to="/" />;
+              // return <Redirect to="/" />;
+              // console.log('this.props.history',this.props.history);
+              
+              return null;
             case null:
               return <div>Loading...</div>;
             default:

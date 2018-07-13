@@ -761,12 +761,22 @@ exports.default = function (ChildComponent) {
     }
 
     _createClass(RequireAuth, [{
+      key: 'componentWillMount',
+      value: function componentWillMount() {
+        if (!this.props.auth) {
+          this.props.history.push('/');
+        }
+      }
+    }, {
       key: 'render',
       value: function render() {
-        console.log('in RequireAuth');
+
         switch (this.props.auth) {
           case false:
-            return _react2.default.createElement(_reactRouterDom.Redirect, { to: '/' });
+            // return <Redirect to="/" />;
+            // console.log('this.props.history',this.props.history);
+
+            return null;
           case null:
             return _react2.default.createElement(
               'div',
